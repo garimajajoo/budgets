@@ -1,0 +1,53 @@
+<!-- html that allows you to edit an exisiting budget -->
+{% extends "base.html" %}
+{% block content %}
+<form action = "" method = "post">
+<table id = "table">
+	<tr>
+		<th>Line Item</th>
+		<th>Amount</th>
+	</tr>
+	<tr>
+		<td>{{ form.line_item1 }}</td>
+		<td>{{ form.amount1 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item2 }}</td>
+		<td>{{ form.amount2 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item3 }}</td>
+		<td>{{ form.amount3 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item4 }}</td>
+		<td>{{ form.amount4 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item5 }}</td>
+		<td>{{ form.amount5 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item6 }}</td>
+		<td>{{ form.amount6 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item7 }}</td>
+		<td>{{ form.amount7 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item8 }}</td>
+		<td>{{ form.amount8 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item9 }}</td>
+		<td>{{ form.amount9 }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.line_item10 }}</td>
+		<td>{{ form.amount10 }}</td>
+	</tr>
+</table>
+{{form.submit}}
+</form>
+{% endblock %}

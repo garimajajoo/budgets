@@ -1,0 +1,33 @@
+<!-- this file allows a user to register a new account -->
+<html>
+<head><title>Register A New Account</title></head>
+<body>
+	{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        
+	<h1>Register A New Account</h1>
+<form action = "" method = "post">
+	{{ form.hidden_tag() }}
+	<p>
+		{{ form.username.label }}
+		{{ form.username(size=32) }}
+	</p>
+	<p>
+		{{ form.password.label }}
+		{{ form.password(size=32) }}
+	</p>
+	<p>
+		{{ form.password2.label }}
+		{{ form.password2(size=32) }}
+	</p>
+    <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

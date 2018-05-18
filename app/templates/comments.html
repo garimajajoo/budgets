@@ -1,0 +1,31 @@
+<!-- the html that either allows you to create a new comment thread and show all the existing comment threads or allows you to view the comments in a comment thread -->
+{% extends "base.html" %}
+
+{% block content %}
+{% if count==0 %}
+<form action = "" method = "POST">
+	<input type = "text" name ="thread_name" id = "thread_name">
+	<input type = "submit" name = "thread_submit" id = "thread_submit" value = "Create New Thread">
+</form>
+<h1>Existing Threads</h1>
+{% for a in all_threads %}
+<form action = "" method = "POST">
+<input type = "submit" name="select_thread" id = "select_thread" value = "{{a}}">
+</form>
+{% endfor %}
+{% endif %}
+
+{% if count==1 %}
+	{% for c in comm %}
+	<strong>{{c[1]}}: </strong>{{c[0]}}<br>
+	{% endfor %}
+<div>
+<br>
+<form action = "" method = "POST">
+	<label>Comment</label><input type = "texarea" name ="new_comment" id = "new_comment">
+	<input type = "hidden" name = "current_thread" id = "current_thread" value = "{{current_thread}}">
+	<input type = "submit" name = "comment_submit" id = "comment_submit" value = "Submit">
+</form>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+<!-- creates html for the graph for the analysis of a month's expenses to be displayed -->
+{% extends "base.html" %}
+{% block content %}
+<link rel = "stylesheet" href="graph.css">
+<div class = "graph">
+	{{line_chart.render()|safe}}
+
+</div>
+{% endblock %}

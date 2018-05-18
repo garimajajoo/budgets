@@ -1,0 +1,17 @@
+<!-- html that allows you to edit an expense that you recorded earlier -->
+{% extends "base.html" %}
+{% block content %}
+<div>
+<h3>Edit your expense record</h3>
+		<form action = "" method = "POST">
+			<input type = "hidden" name = "expenseid" id = "expenseid" value = "{{expenseid}}">
+			{{expenseform.category.label}}
+			{{expenseform.category}}
+			{{expenseform.amount.label}}
+			{{expenseform.amount}}
+			<label>Date</label><input type = "date" id = "date" name="date">
+			<input type = "submit" name = "editexpensesubmit" id = "editexpensesubmit" value = "Update">
+		</form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!-- the base html that all other html files branch off of; this file contains links to the home page, comment section, and to logout
+it also gives the ability to flash messages at the top of a web page -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Expenses</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Navigation:
+            <a href="/index">Home</a>
+            <a href="/comments">Comment Section</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

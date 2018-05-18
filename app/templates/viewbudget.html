@@ -1,0 +1,16 @@
+<!-- displays the categories and amounts of an existing budget -->
+{% extends "base.html" %}
+{% block content %}
+<table>
+	<tr>
+		<th>Line Item</th>
+		<th>Amount</th>
+	</tr>
+	{% for i in range(length) %}
+	<tr>
+		<td>{{categories[i]}}</td>
+		<td>{{amounts[i]}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

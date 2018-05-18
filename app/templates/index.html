@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1> Hi, {{ current_user.username }} </h1>
+	<!-- form to create a new budget -->
+	<form action = "" method = "POST">
+		{{ createform.hidden_tag() }}
+	<p>
+		{{ createform.budget_name.label }}
+		{{ createform.budget_name(size=32) }}
+	</p>
+	<p>{{ createform.submit() }}</p>
+	</form>
+	<div>
+	
+		{% if count==0 %}
+		<div></div>
+		{% else %}
+	<h1>All Budgets</h1>
+	<!-- lists all the budgets that a user has -->
+	<form action = "/choose" method = "POST">
+		{% for b in range(budget_size) %}
+		<input type = "radio" id = "radio" name = "radio" value = "{{budgets[b]}}">{{budgets[b]}}
+		{% if shared[b] != None %}
+		(shared by {{shared[b]}})
+		{% endif %}<br>
+		{% endfor %}
+		<!-- allows a user to select a budget that a user can then view, edit, delete or share with another user -->
+		{{viewform.viewsubmit}}
+		{{editform.editsubmit}}
+		{{deleteform.deletesubmit}}
+		<br>
+		{{shareform.shareuser}}
+		{{shareform.sharesubmit}}
+	</form>
+		{% endif %}
+	
+	</div>
+	<div>
+		<!-- a user can compare all past budgets by clicking this form -->
+		<form action = "" method = "POST">
+		<input type = "submit" id = "comparebudgets" name = "comparebudgets" value = "Compare All Budgets">
+		</form>
+	</div>
+	<div>
+		<!-- a user can keep track of their expenses by using this form -->
+		<h1>Track Your Expenses</h1>
+		<form action = "" method = "POST">
+			{{expenseform.category.label}}
+			{{expenseform.category}}
+			{{expenseform.amount.label}}
+			{{expenseform.amount}}
+			<label>Date</label><input type = "date" id = "date" name="date">
+			{{expenseform.expensesubmit}}
+		</form>
+	</div>
+	<div>
+		<!-- by clicking on a month and view, a list of all the expenses recorded for that month will display
+		by clicking on a month and analyze, a graph of all the expenses recorded for that month will display -->
+	<form action = "" method = "POST">
+		<h1>View Your Expenses</h1>
+		<label>Select the Month</label>
+		<input type = "month" id = "month" name ="month">
+		<input type = "submit" id = "viewexpenses" name = "viewexpenses" value = "View Expenses">
+		<input type = "submit" id = "analyzeexpenses" name = "analyzeexpenses" value = "Analyze Expenses">
+	</form>
+	{% if length ==0 %}
+	<div></div>
+	{% else %}
+	<table>
+		<tr><th>Line Item</th><th>Amount</th></tr>
+	{% for e in expenses_for_the_month %}
+	<tr><td>{{e[0]}}</td><td>{{e[1]}}</td><td><form action ="" method ="POST"><input type = "hidden" name = "expenseid" id = "expenseid" value = "{{e[2]}}"><input type = "submit" name = "editexpense" id = "editexpense" value = "Edit"><input type = "submit" name = "deleteexpense" id = "deleteexpense" value = "Delete"></form></td></tr>
+	{% endfor %}
+	</table>
+	{% endif %}
+	</div>
+	{% if count==0 %}
+	<div></div>
+	{% else %}
+	<div>
+		<!-- by selecting a month and a budget, a user can see a graph that compares the user's actual spending with their budget -->
+		<h1>Compare Your Budget to Your Expenses</h1>
+		<form action ="" method = "POST">
+			<label>Pick a Budget</label>
+			<select id = "select" name = "select">
+				{% for b in budgets %}
+				<option name = "option" id = "option" value = {{b}}>{{b}}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label>Pick a Month</label><input type ="month" id = "month" name ="month">
+			<br>
+			<input type = "submit" id ="comparesubmit" name ="comparesubmit" value = "Compare">
+		</form>
+	</div>
+	{% endif %}
+
+{% endblock %}

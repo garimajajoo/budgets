@@ -1,0 +1,25 @@
+h1 {
+	color: #3266ba;
+	background-color: #adccff;
+	font-family: "Impact", Charcoal, sans-serif;
+}
+
+
+a:link, a:visited {
+    background-color: #adccff;
+    color: white;
+    padding: 5px 15px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: #3266ba;
+}
+
+.graph{
+    height: 50%;
+    width: 50%;
+    margin: auto;
+}
